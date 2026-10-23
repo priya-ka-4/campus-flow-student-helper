@@ -1,0 +1,29 @@
+{
+  "name": "campus-flow-student-helper",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/priya-ka-4/campus-flow-student-helper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/priya-ka-4/campus-flow-student-helper/issues"
+  },
+  "homepage": "https://github.com/priya-ka-4/campus-flow-student-helper#readme",
+  "dependencies": {
+    "@netlify/functions": "^6.0.3",
+    "openai": "^7.43.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  },
+  "private": true
+}
