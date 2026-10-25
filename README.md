@@ -20,6 +20,16 @@ POST endpoints require an Origin matching the request origin and reject cross-si
 
 Requests have a 24-second upstream timeout with no automatic retries. Slow or large inputs can require trimming. The client displays configuration, network, quota, and validation errors and retains existing editor content on failure. Actual OpenAI access, billing, model availability, and production edge-limit behavior require deployment verification.
 
+## AI notes troubleshooting
+
+Generate AI study notes is disabled until the editor contains 20–40,000 transcript characters, excluding outer whitespace. Recording audio does not guarantee a live transcript: if it is empty, stop the recording and select Transcribe, or paste a transcript. The character hint updates as text changes, including when opening saved lectures. Quick local draft works offline with any non-empty transcript and does not require the AI minimum.
+
+The server classifies structured OpenAI API error code/type fields without returning provider response bodies. Account quota, credit, or spending-limit errors return an `ai_quota_exhausted` error (503); temporary request/token rate limits return `ai_rate_limited` (429). An unrecognized 429 returns `ai_limit_unknown` without asserting that billing or temporary traffic is the cause.
+
+For exhausted account quota, the site owner must review the OpenAI project connected to the existing server-side credential: confirm API billing and available credits, and check organization/project spending limits. The owner must resolve the applicable balance or limit before retrying; repeated immediate retries do not restore credits. Temporary rate limits call for waiting and reducing concurrent requests. No billing or environment changes are made by this fix.
+
+Local storage keys and saved records are unchanged. A preview uses a different origin and therefore cannot display the production origin's browser-local data; that does not mean the production data was removed.
+
 ## Local checks
 
 ```sh

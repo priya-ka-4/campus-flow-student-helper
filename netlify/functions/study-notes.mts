@@ -9,8 +9,8 @@ export default async (req: Request) => {
     let body;
     try { body = JSON.parse(new TextDecoder().decode(bytes)); }
     catch { return json({ error: 'Invalid JSON. Please retry from the note editor.' }, 400); }
-    if (!body || typeof body.transcript !== 'string' || body.transcript.trim().length < 20 || body.transcript.length > 40_000)
-      return json({ error: 'Provide a transcript between 20 and 40,000 characters.' }, 400);
+    if (!body || typeof body.transcript !== 'string' || body.transcript.trim().length < 20 || body.transcript.trim().length > 40_000)
+      return json({ error: 'Transcribe the recording or paste a transcript between 20 and 40,000 characters (excluding outer whitespace).' }, 400);
     const response = await client().responses.create({
       model: Netlify.env.get('OPENAI_NOTES_MODEL') || 'gpt-4.1-mini',
       store: false, max_output_tokens: 2500,
